@@ -1,8 +1,8 @@
-const { Contact } = require("../../models");
+const { User } = require("../../models");
 
 //TODO Вывод всех
 const listContacts = async (req, res) => {
-  const contacts = await Contact.find({});
+  const contacts = await User.find({});
   //   res.json(contacts);
   res.json({
     status: "success",

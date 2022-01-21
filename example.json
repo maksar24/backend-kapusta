@@ -1,5 +1,17 @@
 {
-  "_id": "61dc51345b8bf82ce97185ef",
-  "balance": "55000",
-  "date": "05.09.2019"
+  "_id": { "$oid": "61eaba8c3491ce9e58fc87bf" },
+  "name": "Ivan Ivanov",
+  "balance": 55000,
+  "consumption": {
+    "date": "05.09.2019",
+    "description": "Метро (Lorem ipsum dolor sit... ",
+    "category": "Транспорт",
+    "sum": "-33"
+  },
+  "income": {
+    "date": "05.09.2019",
+    "description": "% на остаток на карте",
+    "category": "Доп. доход",
+    "sum": "500"
+  }
 }

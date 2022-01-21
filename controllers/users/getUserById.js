@@ -1,12 +1,12 @@
 //? библиотека для генерации ошибок
 const createError = require("http-errors");
 
-const { Contact } = require("../../models");
+const { User } = require("../../models");
 
-const getContactById = async (req, res) => {
+const getUserById = async (req, res) => {
   //? найти по id
   const { id } = req.params;
-  const result = await Contact.findById(id);
+  const result = await User.findById(id);
 
   //? проверка на существование id
   if (!result) {
@@ -14,7 +14,7 @@ const getContactById = async (req, res) => {
     // error.status = 404;
     // throw error;
 
-    throw createError(404, `Contact with id=${id} not found`);
+    throw createError(404, `User with id=${id} not found`);
   }
 
   res.json({
@@ -26,4 +26,4 @@ const getContactById = async (req, res) => {
   });
 };
 
-module.exports = getContactById;
+module.exports = getUserById;

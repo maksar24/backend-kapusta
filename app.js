@@ -3,7 +3,7 @@ const logger = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
 
-const contacts = require("./routes/api/contacts");
+const finance = require("./routes/api/finance");
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/contacts", contacts);
+app.use("/api/finance", finance);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

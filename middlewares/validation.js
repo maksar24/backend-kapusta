@@ -1,23 +1,14 @@
-//! получает схему
-const validation = (schema) => {
-  //
-  //! создает другую функцию
+const validation = (schema, message) => {
   return (req, res, next) => {
-    //
-    //! берет реквестбоди, закидывает схему
-    const { error } = schema.validate(req.body);
-    //
+    const { error } = schema.validate(req.body)
     if (error) {
-      //! если есть ошибка добавляем 400 статус
-      error.status = 400;
-      //
-      //! передаем дальше обработку
-      next(error);
+      error.status = 400
+      error.message = `${message}`
+      next(error)
+      return
     }
-    //
-    //! дальше передаем без ошибок
-    next();
-  };
-};
+    next()
+  }
+}
 
-module.exports = validation;
+module.exports = validation

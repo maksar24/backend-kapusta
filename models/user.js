@@ -22,7 +22,7 @@ const joiSchema = Joi.object({
   balance: Joi.number().required(),
 });
 
-const User = model("product", userSchema);
+const User = model("proudct", userSchema);
 
 module.exports = {
   User,

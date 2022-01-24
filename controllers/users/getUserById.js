@@ -1,12 +1,12 @@
 //? библиотека для генерации ошибок
 const createError = require("http-errors");
 
-const { User } = require("../../models");
+const { UserTransaction } = require("../../models");
 
 const getUserById = async (req, res) => {
   //? найти по id
   const { id } = req.params;
-  const result = await User.findById(id);
+  const result = await UserTransaction.findById(id);
 
   //? проверка на существование id
   if (!result) {

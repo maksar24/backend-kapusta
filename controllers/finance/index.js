@@ -1,9 +1,11 @@
-const addUserFinance = require("./addUserFinance");
+const addUser = require("../finance/addUser");
+const addUserTransaction = require("./addUserTransaction");
 const removeConsumption = require("./removeConsumption");
 const removeIncome = require("./removeIncome");
 
 module.exports = {
-  addUserFinance,
+  addUser,
+  addUserTransaction,
   removeConsumption,
   removeIncome,
 };

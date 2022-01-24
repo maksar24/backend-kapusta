@@ -6,6 +6,6 @@ const removeZeroString = require("./removeZeroString");
 module.exports = {
   updateBalance,
   sumNormalize,
-  removeZeroString,
   sendMessage,
+  removeZeroString,
 };

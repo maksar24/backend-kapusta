@@ -23,10 +23,6 @@ const authSchema = Schema(
       type: String,
       default: null,
     },
-    balance: {
-      type: Number,
-      default: 0,
-    },
     avatarURL: {
       type: String,
     },
@@ -64,15 +60,10 @@ const joiLogInSchema = Joi.object({
   email: Joi.string().email().required(),
 });
 
-const joiBalanceSchema = Joi.object({
-  balance: Joi.number().required(),
-});
-
 const Auth = model("auth", authSchema);
 
 module.exports = {
   Auth,
   joiSignUpSchema,
   joiLogInSchema,
-  joiBalanceSchema,
 };

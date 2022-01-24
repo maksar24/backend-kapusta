@@ -1,7 +1,7 @@
 const { removeZeroString, sumNormalize } = require("../../helpers");
-const { UserIncome } = require("../../models");
+const { UserTransaction } = require("../../models");
 
-const addUserIncome = async (req, res) => {
+const addUserTransaction = async (req, res) => {
   const { id } = req.params;
   const { type, description, amount, category, subcategory, date } = req.body;
 
@@ -12,7 +12,6 @@ const addUserIncome = async (req, res) => {
   };
 
   const amountNormalize = sumNormalize(amount);
-
   const transaction = {
     type,
     description,
@@ -22,12 +21,10 @@ const addUserIncome = async (req, res) => {
     date: dateNormalize,
   };
 
-  const newTransaction = await UserIncome.findOne({ id }).lean();
+  const newTransaction = await UserTransaction.findById(id).lean();
   if (transaction.type === "consumption") {
     newTransaction.consumption.push(transaction);
-    await newTransaction.save();
   } else newTransaction.income.push(transaction);
-  // console.log(newTransaction);
 
   res.json({
     status: "success",
@@ -36,4 +33,4 @@ const addUserIncome = async (req, res) => {
   });
 };
 
-module.exports = addUserIncome;
+module.exports = addUserTransaction;

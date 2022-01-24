@@ -1,7 +1,7 @@
-const { User } = require("../../models");
+const { UserTransaction } = require("../../models");
 
 const addUserFinance = async (req, res) => {
-  const result = await User.create(req.body);
+  const result = await UserTransaction.create(req.body);
   res.status(201).json({
     status: "success",
     code: 201,

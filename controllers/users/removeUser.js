@@ -1,10 +1,10 @@
 const createError = require("http-errors");
 
-const { User } = require("../../models");
+const { UserTransaction } = require("../../models");
 
 const removeUser = async (req, res) => {
   const { id } = req.params;
-  const result = await User.findByIdAndRemove(id);
+  const result = await UserTransaction.findByIdAndRemove(id);
   if (!result) {
     throw createError(404, `User with id=${id} not found`);
   }

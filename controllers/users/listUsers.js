@@ -1,8 +1,8 @@
-const { User } = require("../../models");
+const { UserTransaction } = require("../../models");
 
 //TODO Вывод всех
 const listContacts = async (req, res) => {
-  const contacts = await User.find({});
+  const contacts = await UserTransaction.find({});
   //   res.json(contacts);
   res.json({
     status: "success",

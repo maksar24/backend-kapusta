@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { validation, ctrlWrapper } = require("../../middlewares");
+const { validation, ctrlWrapper, auth } = require("../../middlewares");
 
 const { joiSchemaTransaction, joiSchemaUser } = require("../../models/finance");
 
@@ -14,16 +14,13 @@ router.get("/", ctrlWrapper(userCtrl.listUsers));
 //TODO Вывод одного
 router.get("/:id", ctrlWrapper(userCtrl.getUserById));
 
-//TODO Добавление пользователя
-router.post("/", validation(joiSchemaUser), ctrlWrapper(financeCtrl.addUser));
-
 //TODO Добавление транзакции
-router.post("/:id/transaction", validation(joiSchemaTransaction), ctrlWrapper(financeCtrl.addUserTransaction));
+router.post("/", auth, validation(joiSchemaTransaction), ctrlWrapper(financeCtrl.addUserTransaction));
+
+//TODO Удаление транзакции
+router.delete("/:id", auth, ctrlWrapper(financeCtrl.deleteUserTransaction));
 
 //TODO Обновление баланса по id
-router.put("/:id/finance/balance", validation(joiSchemaTransaction), ctrlWrapper(financeCtrl.addUserBalance));
-
-//TODO Удаление
-router.delete("/:id", ctrlWrapper(userCtrl.removeUser));
+// router.put("/:id/finance/balance", validation(joiSchemaTransaction), ctrlWrapper(financeCtrl.addUserBalance));
 
 module.exports = router;

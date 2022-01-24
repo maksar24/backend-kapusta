@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("Joi");
 
-const categories = [
+const category = [
   "alcohol",
   "activities",
   "transport",
@@ -11,71 +11,57 @@ const categories = [
   "gadgets",
   "education",
   "health",
-  "salary",
   "others",
-  "extra_income",
   "hobbies",
+  "salary",
+  "additional-income",
 ];
 
 const transactionSchema = Schema(
   {
-    name: {
-      type: String,
-      required: [true, "Enter a full name"],
-    },
-    balance: {
-      type: Number,
-      required: [true, "Set balance for user"],
-    },
-    income: [Object],
-    consumption: [Object],
     type: {
       type: String,
-      // required: [true, "Enter the type"],
+      required: [true, "Enter the type"],
       enum: ["income", "consumption"],
-    },
-    description: {
-      type: String,
-      // required: [true, "Enter a description of the transaction"],
-    },
-    amount: {
-      type: Number,
-      // required: [true, "Enter transaction amount"],
-      min: 0,
     },
     category: {
       type: String,
-      // required: [true, "Enter transaction category"],
-      enum: categories,
+      required: [true, "Enter transaction consumption"],
+      enum: category,
     },
-    subcategory: {
+    description: {
       type: String,
-      // default: "others",
+      required: [true, "Enter a description of the transaction"],
+    },
+    amount: {
+      type: Number,
+      required: [true, "Enter transaction amount"],
+      min: 0,
     },
     date: {
       day: {
         type: String,
-        // required: [true, "Enter the date"],
+        required: [true, "Enter the date"],
         minLength: 1,
         maxLength: 2,
       },
       month: {
         type: String,
-        // required: [true, "Enter the date"],
+        required: [true, "Enter the date"],
         minLength: 1,
         maxLength: 2,
       },
       year: {
         type: String,
-        // required: [true, "Enter the date"],
+        required: [true, "Enter the date"],
         minLength: 4,
         maxLength: 4,
       },
     },
     owner: {
       type: Schema.Types.ObjectId,
-      ref: "authUser",
-      // required: true,
+      ref: "auth",
+      required: true,
     },
     createdAt_ms: {
       type: String,
@@ -93,11 +79,11 @@ const joiSchemaTransaction = Joi.object({
   type: Joi.string().required().valid("income", "consumption"),
   description: Joi.string().required(),
   amount: Joi.number().required(),
+
   category: Joi.string()
     .required()
-    .valid(...categories),
+    .valid(...category),
   subcategory: Joi.string(),
-
   date: Joi.object({
     day: Joi.string().required().min(1).max(2),
     month: Joi.string().required().min(1).max(2),
@@ -105,15 +91,9 @@ const joiSchemaTransaction = Joi.object({
   }),
 });
 
-const joiSchemaUser = Joi.object({
-  name: Joi.string().required(),
-  balance: Joi.number().required(),
-});
-
-const UserTransaction = model("user", transactionSchema);
+const UserTransaction = model("transaction", transactionSchema);
 
 module.exports = {
   UserTransaction,
   joiSchemaTransaction,
-  joiSchemaUser,
 };

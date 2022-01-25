@@ -2,25 +2,24 @@ const express = require("express");
 
 const { validation, ctrlWrapper, auth } = require("../../middlewares");
 
-const { joiSchemaTransaction, joiSchemaUser } = require("../../models/finance");
+const { joiSchemaTransaction } = require("../../models/finance");
 
-const { users: userCtrl, finance: financeCtrl } = require("../../controllers");
+const { joiBalanceSchema } = require("../../models/auth");
+
+const { finance: ctrl, balance: ctrlBalance } = require("../../controllers");
 
 const router = express.Router();
 
-//TODO Вывод всех
-router.get("/", ctrlWrapper(userCtrl.listUsers));
-
-//TODO Вывод одного
-router.get("/:id", ctrlWrapper(userCtrl.getUserById));
-
 //TODO Добавление транзакции
-router.post("/", auth, validation(joiSchemaTransaction), ctrlWrapper(financeCtrl.addUserTransaction));
-
-//TODO Удаление транзакции
-router.delete("/:id", auth, ctrlWrapper(financeCtrl.deleteUserTransaction));
+router.post("/", auth, validation(joiSchemaTransaction), ctrlWrapper(ctrl.addTransaction));
 
 //TODO Обновление баланса по id
-// router.put("/:id/finance/balance", validation(joiSchemaTransaction), ctrlWrapper(financeCtrl.addUserBalance));
+router.put("/:id/balance", auth, validation(joiBalanceSchema), ctrlWrapper(ctrlBalance.updateBalance));
+
+//TODO Вывод транзакции owner
+router.get("/:id", auth, ctrlWrapper(ctrl.getTransactionById));
+
+//TODO Удаление транзакции id
+router.delete("/:id", auth, ctrlWrapper(ctrl.deleteTransaction));
 
 module.exports = router;

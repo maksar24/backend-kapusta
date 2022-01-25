@@ -28,4 +28,7 @@ router.get("/type/:type", auth, ctrlWrapper(ctrl.getAllByType));
 //TODO Удаление транзакций id
 router.delete("/:id", auth, ctrlWrapper(ctrl.deleteTransaction));
 
+//TODO Вывод транзакции за месяц
+router.get("/period/:type/:year/:month", auth, ctrlWrapper(ctrl.geTransactionForPeriod));
+
 module.exports = router;

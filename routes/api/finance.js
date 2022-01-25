@@ -16,10 +16,16 @@ router.post("/", auth, validation(joiSchemaTransaction), ctrlWrapper(ctrl.addTra
 //TODO Обновление баланса по id
 router.put("/:id/balance", auth, validation(joiBalanceSchema), ctrlWrapper(ctrlBalance.updateBalance));
 
-//TODO Вывод транзакции owner
+//TODO Вывод транзакций owner
 router.get("/:id", auth, ctrlWrapper(ctrl.getTransactionById));
 
-//TODO Удаление транзакции id
+//TODO Вывод транзакций за месяц
+router.get("/period/:type/:year/:month", auth, ctrlWrapper(ctrl.geTransactionForPeriod));
+
+//TODO Вывод транзакций по типу
+router.get("/type/:type", auth, ctrlWrapper(ctrl.getAllByType));
+
+//TODO Удаление транзакций id
 router.delete("/:id", auth, ctrlWrapper(ctrl.deleteTransaction));
 
 //TODO Вывод транзакции за месяц

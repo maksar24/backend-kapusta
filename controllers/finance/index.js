@@ -1,5 +1,6 @@
 const addTransaction = require("./addTransaction");
 const deleteTransaction = require("./deleteTransaction");
+const getAllByType = require("./getAllByType");
 const getTransactionById = require("./getTransactionById");
 const geTransactionForPeriod = require("./geTransactionForPeriod");
 const getReportTransactions = require('./getReportTransactions')
@@ -7,6 +8,7 @@ const getReportTransactions = require('./getReportTransactions')
 module.exports = {
   addTransaction,
   deleteTransaction,
+  getAllByType,
   getTransactionById,
   geTransactionForPeriod,
   getReportTransactions

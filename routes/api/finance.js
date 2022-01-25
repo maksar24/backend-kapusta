@@ -32,6 +32,6 @@ router.delete("/:id", auth, ctrlWrapper(ctrl.deleteTransaction));
 router.get("/period/:type/:year/:month", auth, ctrlWrapper(ctrl.geTransactionForPeriod));
 
 //TODO Вывод отчета по транзакциям за месяц
-// router.get("/report/:type/:year/:month", auth, ctrlWrapper(ctrl.getReportTransactions));
+// router.get("/report/:year/:month", auth, ctrlWrapper(ctrl.getReportTransactions));
 
 module.exports = router;

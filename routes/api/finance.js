@@ -19,11 +19,11 @@ router.put("/:id/balance", auth, validation(joiBalanceSchema), ctrlWrapper(ctrlB
 //TODO Вывод транзакций owner
 router.get("/:id", auth, ctrlWrapper(ctrl.getTransactionById));
 
-//TODO Вывод транзакций за месяц
-router.get("/period/:type/:year/:month", auth, ctrlWrapper(ctrl.geTransactionForPeriod));
+//TODO Вывод транзакций для сводки
+router.get("/summary/:type/:year/:month", auth, ctrlWrapper(ctrl.geTransactionForPeriod));
 
-//TODO Вывод транзакций по типу
-router.get("/type/:type", auth, ctrlWrapper(ctrl.getAllByType));
+//TODO Вывод транзакций последний эндпоинт
+router.get("/period/:month/:year/:type", auth, ctrlWrapper(ctrl.getAllBySomeTime));
 
 //TODO Удаление транзакций id
 router.delete("/:id", auth, ctrlWrapper(ctrl.deleteTransaction));

@@ -10,6 +10,10 @@ const authSchema = Schema(
       min: 3,
       max: 10,
     },
+    balance: {
+      type: Number,
+      default: 0,
+    },
     password: {
       type: String,
       required: [true, "Password is required"],
@@ -60,10 +64,15 @@ const joiLogInSchema = Joi.object({
   email: Joi.string().email().required(),
 });
 
+const joiBalanceSchema = Joi.object({
+  balance: Joi.number().required(),
+});
+
 const Auth = model("auth", authSchema);
 
 module.exports = {
   Auth,
   joiSignUpSchema,
   joiLogInSchema,
+  joiBalanceSchema,
 };

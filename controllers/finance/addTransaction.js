@@ -1,24 +1,19 @@
-const { removeZeroString, sumNormalize } = require("../../helpers");
+const { removeZeroString } = require("../../helpers");
 const { UserTransaction } = require("../../models");
 
 const addUserTransaction = async (req, res) => {
   const { _id } = req.user;
 
-  const { type, description, amount, category, date } = req.body;
+  const { type, description, amount, category, day, month, year } = req.body;
 
-  const dateNormalize = {
-    day: removeZeroString(date.day),
-    month: removeZeroString(date.month),
-    year: date.year,
-  };
-
-  const amountNormalize = sumNormalize(amount);
   const transaction = {
     type,
     category,
     description,
-    amount: amountNormalize,
-    date: dateNormalize,
+    amount,
+    day: removeZeroString(day),
+    month: removeZeroString(month),
+    year,
   };
 
   const newTransaction = await UserTransaction.create({

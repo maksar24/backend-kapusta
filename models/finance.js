@@ -39,19 +39,19 @@ const transactionSchema = Schema(
       min: 0,
     },
     day: {
-      type: String,
+      type: Number,
       required: [true, "Enter the date"],
       minLength: 1,
       maxLength: 2,
     },
     month: {
-      type: String,
+      type: Number,
       required: [true, "Enter the date"],
       minLength: 1,
       maxLength: 2,
     },
     year: {
-      type: String,
+      type: Number,
       required: [true, "Enter the date"],
       minLength: 4,
       maxLength: 4,

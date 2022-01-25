@@ -4,10 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./bin/server.js",
-    "start:dev": "cross-env NODE_ENV=development nodemon ./bin/server.js",
-    "lint": "eslint **/*.js",
-    "lint:fix": "eslint --fix **/*.js"
+    "start": "cross-env NODE_ENV=production node ./app/server.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon ./app/server.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +27,7 @@
     "gravatar": "^1.8.2",
     "http-errors": "^1.8.0",
     "jimp": "^0.16.1",
-    "joi": "^17.4.2",
+    "joi": "17.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12",
     "morgan": "1.10.0",

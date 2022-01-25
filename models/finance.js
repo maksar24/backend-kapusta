@@ -81,9 +81,9 @@ const joiSchemaTransaction = Joi.object({
     .required()
     .valid(...category),
   subcategory: Joi.string(),
-  day: Joi.number().required().min(1).max(2),
-  month: Joi.number().required().min(1).max(2),
-  year: Joi.number().required().min(4).max(4),
+  day: Joi.string().required().min(1).max(2),
+  month: Joi.string().required().min(1).max(2),
+  year: Joi.string().required().min(4).max(4),
 });
 
 const UserTransaction = model("transaction", transactionSchema);

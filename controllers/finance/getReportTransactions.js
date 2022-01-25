@@ -2,11 +2,10 @@ const { NotFound } = require('http-errors')
 const { UserTransaction } = require("../../models");
 
 const getReportTransactions = async (req, res) => {
-  const { type, year, month } = req.params;
+  const { year, month } = req.params;
   const { _id } = req.user;
   const result = await UserTransaction.find({
     owner: _id,
-    type,
     year,
     month
   });
@@ -14,6 +13,10 @@ const getReportTransactions = async (req, res) => {
   if (result.length === 0) {
     throw new NotFound(`No one ${type} transaction for ${month} ${year}`)
   }
+
+  const total = result
+      .map((item) => item.amount)
+      .reduce((a, b) => a + b)
   
 //   const total = result
 //       .map((item) => item.amount)
@@ -21,8 +24,8 @@ const getReportTransactions = async (req, res) => {
   
   res.json({
     status: "success",
-      code: 200,
-    result
+    code: 200,
+      result
   });
 };
 

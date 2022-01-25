@@ -5,7 +5,7 @@ const addUserTransaction = async (req, res) => {
   const { _id } = req.user;
 
   const { type, description, amount, category, day, month, year } = req.body;
-
+  
   const transaction = {
     type,
     category,

@@ -2,30 +2,41 @@ const { NotFound } = require('http-errors')
 const { UserTransaction } = require("../../models");
 
 const geTransactionForPeriod = async (req, res) => {
-  const { type, year, month } = req.params;
+  const { type, year } = req.params;
   const { _id } = req.user;
   const result = await UserTransaction.find({
     owner: _id,
     type,
-    year,
-    month
+    year
   });
+  const yearArray = [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  ];
+  let total = 0;
+  let summary = [];
   
   if (result.length === 0) {
-    throw new NotFound(`No one ${type} transaction for ${month} ${year}`)
+    throw new NotFound(
+      `No one ${type} transaction for ${year} year`
+    )
   }
+
+  result.map(res => {
+    yearArray[res.month - 1] += res.amount;
+    total += res.amount;
+  });
   
-  const total = result
-      .map((item) => item.amount)
-      .reduce((a, b) => a + b)
+  yearArray.map((sum, index) => {
+    summary[index] = { [index + 1]: sum };
+  });
   
   res.json({
     status: "success",
     code: 200,
     type,
     year,
-    month,
-    total
+    total,
+    summary
   });
 };
 

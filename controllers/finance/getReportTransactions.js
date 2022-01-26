@@ -39,7 +39,7 @@ const getReportTransactions = async (req, res) => {
 
   const income = incomeTransaction
     .map((item) => item.group.amount)
-    .reduce((a, b) => a + b)
+    .reduce((a, b) => a + b, 0)
 
   const consumptionTransaction = await UserTransaction.aggregate([
     {
@@ -72,7 +72,7 @@ const getReportTransactions = async (req, res) => {
 
   const consumption = consumptionTransaction
     .map((item) => item.group.amount)
-    .reduce((a, b) => a + b)
+    .reduce((a, b) => a + b, 0)
   
 
   const sumByCategoryIncome = await UserTransaction.aggregate([

@@ -5,6 +5,7 @@ const getAllBySomeTime = require("./getAllBySomeTime");
 const getTransactionById = require("./getTransactionById");
 const geTransactionForPeriod = require("./geTransactionForPeriod");
 const getReportTransactions = require("./getReportTransactions");
+const getByCategory = require('./getByCategory');
 
 module.exports = {
   addTransaction,
@@ -14,4 +15,5 @@ module.exports = {
   getTransactionById,
   geTransactionForPeriod,
   getReportTransactions,
+  getByCategory
 };

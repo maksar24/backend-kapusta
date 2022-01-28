@@ -1,4 +1,5 @@
-const { NotFound } = require('http-errors')
+const { NotFound } = require('http-errors');
+const { object } = require('joi');
 const { UserTransaction } = require("../../models");
 
 const geTransactionForPeriod = async (req, res) => {
@@ -27,7 +28,7 @@ const geTransactionForPeriod = async (req, res) => {
   });
   
   yearArray.map((sum, index) => {
-    summary[index] = { [index + 1]: sum };
+    summary[index] = { monthIdex: index + 1,  value: sum };
   });
   
   res.json({

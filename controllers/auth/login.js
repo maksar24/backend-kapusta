@@ -20,7 +20,9 @@ const login = async (req, res) => {
     status: "success",
     code: 200,
     token,
-    data
+    data: {
+      user
+    }
   });
 };
 

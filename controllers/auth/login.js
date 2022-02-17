@@ -23,6 +23,7 @@ const login = async (req, res) => {
     data: {
       user: {
         email,
+        balance
       },
     },
   });

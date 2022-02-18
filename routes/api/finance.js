@@ -16,6 +16,9 @@ router.post("/", auth, validation(joiSchemaTransaction), ctrlWrapper(ctrl.addTra
 //TODO Обновление баланса по id
 router.put("/:id/balance", auth, validation(joiBalanceSchema), ctrlWrapper(ctrlBalance.updateBalance));
 
+//TODO Вывод баланса по id
+router.get("/:id", auth, ctrlWrapper(ctrlBalance.getBalance));
+
 //TODO Вывод транзакций owner
 router.get("/:id", auth, ctrlWrapper(ctrl.getTransactionById));
 

@@ -29,7 +29,6 @@ const register = async (req, res) => {
       user: {
         name,
         email,
-        balance,
         avatarURL,
         verificationToken
       }

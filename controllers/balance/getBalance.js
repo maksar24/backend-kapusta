@@ -10,13 +10,7 @@ const getBalance = async (req, res) => {
     
     const { balance } = user;
 
-    res.json({
-        status: "success",
-        code: 200,
-        data: {
-            balance
-        },
-    });
+    res.status(200).json({balance});
 };
 
 module.exports = getBalance;

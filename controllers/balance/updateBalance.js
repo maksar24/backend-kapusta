@@ -10,11 +10,7 @@ const updateBalance = async (req, res) => {
     throw new NotFound(`User with ${_id} not found`);
   }
 
-  res.json({
-    status: "success",
-    code: 200,
-    data: { balance: user.balance },
-  });
+  res.status(200).json({ balance: user.balance });
 };
 
 module.exports = updateBalance;

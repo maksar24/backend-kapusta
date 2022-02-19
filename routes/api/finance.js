@@ -14,7 +14,7 @@ const router = express.Router();
 router.post("/", auth, validation(joiSchemaTransaction), ctrlWrapper(ctrl.addTransaction));
 
 //TODO Обновление баланса по id
-router.put("/:id/balance", auth, validation(joiBalanceSchema), ctrlWrapper(ctrlBalance.updateBalance));
+router.put("/balance", auth, validation(joiBalanceSchema), ctrlWrapper(ctrlBalance.updateBalance));
 
 //TODO Вывод баланса по id
 router.get("/getBalance", auth, ctrlWrapper(ctrlBalance.getBalance));

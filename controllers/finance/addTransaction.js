@@ -21,7 +21,6 @@ const addUserTransaction = async (req, res) => {
     owner: _id,
   });
 
-  console.log(newTransaction);
   res.json({
     status: "success",
     code: 200,

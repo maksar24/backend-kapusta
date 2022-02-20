@@ -20,7 +20,7 @@ router.put("/balance", auth, validation(joiBalanceSchema), ctrlWrapper(ctrlBalan
 router.get("/getBalance", auth, ctrlWrapper(ctrlBalance.getBalance));
 
 //TODO Вывод транзакций owner
-router.get("/:id", auth, ctrlWrapper(ctrl.getTransactionById));
+router.get("/", auth, ctrlWrapper(ctrl.getTransactionById));
 
 //TODO Вывод транзакций для сводки
 router.get("/summary/:type/:year", auth, ctrlWrapper(ctrl.geTransactionForPeriod));

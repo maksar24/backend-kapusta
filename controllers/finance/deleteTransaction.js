@@ -14,7 +14,7 @@ const deleteTransaction = async (req, res) => {
     month,
     year
   } = await UserTransaction.findByIdAndRemove({ _id: id });
-    if (!type) {
+  if (!type) {
     throw new NotFound(`Transaction not found`);
   }
   

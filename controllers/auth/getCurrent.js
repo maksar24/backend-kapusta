@@ -3,7 +3,7 @@ const { Auth } = require('../../models')
 const getCurrent = async (req, res) => {
     const { _id } = req.user;
     const currentUser = await Auth.findById(_id);
-    const { name, email, balance } = currentUser;
+    const { name, email, balance, avatarURL } = currentUser;
 
     res.json({
         status: 'success',
@@ -11,6 +11,7 @@ const getCurrent = async (req, res) => {
         data: {
             name,
             email,
+            avatarURL,
             balance
         }
     });

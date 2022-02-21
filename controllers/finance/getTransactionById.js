@@ -1,4 +1,3 @@
-//? библиотека для генерации ошибок
 const { NotFound } = require("http-errors");
 const { UserTransaction } = require("../../models");
 

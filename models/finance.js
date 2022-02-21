@@ -14,7 +14,7 @@ const category = [
   "others",
   "hobbies",
   "salary",
-  "additional-income",
+  "additional_income",
 ];
 
 const transactionSchema = Schema(
@@ -39,19 +39,19 @@ const transactionSchema = Schema(
       min: 0,
     },
     day: {
-      type: Number,
+      type: String,
       required: [true, "Enter the date"],
       minLength: 1,
       maxLength: 2,
     },
     month: {
-      type: Number,
+      type: String,
       required: [true, "Enter the date"],
       minLength: 1,
       maxLength: 2,
     },
     year: {
-      type: Number,
+      type: String,
       required: [true, "Enter the date"],
       minLength: 4,
       maxLength: 4,

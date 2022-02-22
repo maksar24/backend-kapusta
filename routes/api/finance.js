@@ -31,7 +31,7 @@ router.get("/period/:month/:year/:type", auth, ctrlWrapper(ctrl.getAllBySomeTime
 //TODO Вывод транзакций по типу
 router.get("/type/:type", auth, ctrlWrapper(ctrl.getAllByType));
 
-//TODO Вывод отчета по транзакциям за месяц
+//TODO Вывод отчета по транзакциям
 router.get("/report/:year/:month", auth, ctrlWrapper(ctrl.getReportTransactions));
 
 //TODO Удаление транзакций id

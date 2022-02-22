@@ -6,9 +6,9 @@ const getUserById = async (req, res) => {
 
   const result = await UserTransaction.find({
     owner: _id,
-  });
+  }); 
   if (!result) {
-    throw new NotFound(`User with ${_id} not found`);
+    throw new NotFound(`User with ${_id} did't make any transactions`);
   }
 
   res.json({

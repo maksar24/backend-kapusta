@@ -1,5 +1,6 @@
 const queryString = require('query-string');
 const jwt = require("jsonwebtoken");
+const axios = require('axios');
 const { v4 } = require('uuid');
 const SECRET_KEY = process.env.SECRET_KEY;
 const { Auth } = require("../../models");

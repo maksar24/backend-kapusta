@@ -1,24 +1,28 @@
-const express = require('express')
+const express = require('express');
 
 const {
     ctrlWrapper,
     validation,
     auth
-} = require('../../middlewares')
+} = require('../../middlewares');
 const { auth: ctrl } = require('../../controllers') 
 const {
     joiSignUpSchema,
     joiLogInSchema
-} = require('../../models/auth')
+} = require('../../models/auth');
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/current', auth, ctrlWrapper(ctrl.getCurrent))
+router.get('/current', auth, ctrlWrapper(ctrl.getCurrent));
 
-router.post('/signup', validation(joiSignUpSchema, "try again"), ctrlWrapper(ctrl.register))
+router.post('/signup', validation(joiSignUpSchema, "try again"), ctrlWrapper(ctrl.register));
 
-router.post('/login', validation(joiLogInSchema, "try again"), ctrlWrapper(ctrl.login))
+router.post('/login', validation(joiLogInSchema, "try again"), ctrlWrapper(ctrl.login));
 
-router.get('/logout', auth, ctrlWrapper(ctrl.logout))
+router.get('/logout', auth, ctrlWrapper(ctrl.logout));
 
-module.exports = router
+router.get('/google', ctrlWrapper(ctrl.googleAuth));
+
+router.get('/google-redirect', ctrlWrapper(ctrl.googleRedirect));
+
+module.exports = router;

@@ -29,7 +29,6 @@ const getReportTransactions = async (req, res) => {
       },
     },
   ]);
-  const { income } = incomeTransaction[0];
 
   const consumptionTransaction = await UserTransaction.aggregate([
     {
@@ -53,7 +52,6 @@ const getReportTransactions = async (req, res) => {
       },
     },
   ]);
-  const { consumption } = consumptionTransaction[0];
 
   const sumByCategoryIncome = await UserTransaction.aggregate([
     {
@@ -116,8 +114,8 @@ const getReportTransactions = async (req, res) => {
   res.json({
     status: "success",
     code: 200,
-    income,
-    consumption,
+    incomeTransaction,
+    consumptionTransaction,
     sumByCategoryIncome,
     sumByCategoryConsumption,
   });

@@ -7,38 +7,6 @@ const getReportTransactions = async (req, res) => {
   const monthNum = Number(month);
   const yearNum = Number(year);
   
-  // const incomeTransaction = await UserTransaction.aggregate([
-  //   {
-  //     $match: {
-  //       owner: _id,
-  //       month: monthNum,
-  //       year: yearNum,
-  //       type: "income",
-  //     },
-  //   },
-  //   {
-  //     $group: {
-  //       _id: {
-  //         month: '$month',
-  //         year: '$year',
-  //         description: '$description',
-  //         category: '$category',
-  //         amount: '$amount',
-  //       },
-  //     },
-  //   },
-
-  //   {
-  //     $project: {
-  //       _id: 0,
-  //       group: '$_id',
-  //     },
-  //   },
-  // ]);
-
-  // const income = incomeTransaction
-  //   .map((item) => item.group.amount)
-  //   .reduce((a, b) => a + b, 0)
   const incomeTransaction = await UserTransaction.aggregate([
     {
       $match: {
@@ -61,39 +29,8 @@ const getReportTransactions = async (req, res) => {
       },
     },
   ]);
+  const { income } = incomeTransaction[0];
 
-  // const consumptionTransaction = await UserTransaction.aggregate([
-  //   {
-  //     $match: {
-  //       owner: _id,
-  //       month: monthNum,
-  //       year: yearNum,
-  //       type: "consumption",
-  //     },
-  //   },
-  //   {
-  //     $group: {
-  //       _id: {
-  //         month: '$month',
-  //         year: '$year',
-  //         description: '$description',
-  //         category: '$category',
-  //         amount: '$amount',
-  //       },
-  //     },
-  //   },
-
-  //   {
-  //     $project: {
-  //       _id: 0,
-  //       group: '$_id',
-  //     },
-  //   },
-  // ]);
-
-  // const consumption = consumptionTransaction
-  //   .map((item) => item.group.amount)
-  //   .reduce((a, b) => a + b, 0)
   const consumptionTransaction = await UserTransaction.aggregate([
     {
       $match: {
@@ -116,6 +53,7 @@ const getReportTransactions = async (req, res) => {
       },
     },
   ]);
+  const { consumption } = consumptionTransaction[0];
 
   const sumByCategoryIncome = await UserTransaction.aggregate([
     {
@@ -178,8 +116,8 @@ const getReportTransactions = async (req, res) => {
   res.json({
     status: "success",
     code: 200,
-    incomeTransaction,
-    consumptionTransaction,
+    income,
+    consumption,
     sumByCategoryIncome,
     sumByCategoryConsumption,
   });
